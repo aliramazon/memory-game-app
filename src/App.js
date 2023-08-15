@@ -1,6 +1,6 @@
-import './App.css';
-import { useEffect, useState } from 'react';
-import classnames from 'classnames';
+import "./App.css";
+import { useEffect, useState } from "react";
+import classnames from "classnames";
 
 const MemoryGame = () => {
     const [level, setLevel] = useState(2);
@@ -21,7 +21,7 @@ const MemoryGame = () => {
     }, [level]);
 
     useEffect(() => {
-        console.log('Running');
+        console.log("Running");
         console.log(correctSelect, level);
         if (correctSelect === level) {
             setIsGameFinished(true);
@@ -91,11 +91,16 @@ const MemoryGame = () => {
                 onChange={handleOnChangeLevel}
             />
             {(!isGameStarted || isGameFinished) && (
-                <div>
-                    <button onClick={handleOnClickButton}>
-                        {isGameFinished ? 'Play Again ?' : 'Start Game'}
-                    </button>
-                </div>
+                <button
+                    onClick={handleOnClickButton}
+                    style={{
+                        marginBottom: "20px",
+                        display: "block",
+                        margin: "0 auto",
+                    }}
+                >
+                    {isGameFinished ? "Play Again ?" : "Start Game"}
+                </button>
             )}
 
             {timer && isGameStarted && <p>Memorize the highlighted cells</p>}
@@ -112,7 +117,7 @@ const MemoryGame = () => {
                 className="board"
                 style={{
                     gridTemplateColumns: `repeat(${level}, 1fr)`,
-                    gap: '5px'
+                    gap: "5px",
                 }}
             >
                 {cells &&
@@ -121,17 +126,17 @@ const MemoryGame = () => {
                             <div
                                 key={idx}
                                 className={classnames(
-                                    'board__cell',
+                                    "board__cell",
                                     preFilledCells[idx] &&
                                         timer &&
-                                        'pre-filled',
+                                        "pre-filled",
                                     preFilledCells[idx] &&
                                         clickedIndices[idx] &&
-                                        'correct',
+                                        "correct",
                                     !preFilledCells[idx] &&
                                         clickedIndices[idx] &&
-                                        'wrong',
-                                    !isGameStarted && 'game-not-started'
+                                        "wrong",
+                                    !isGameStarted && "game-not-started"
                                 )}
                                 onClick={
                                     !timer && !isGameFinished
